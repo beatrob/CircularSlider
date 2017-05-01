@@ -53,7 +53,7 @@ open class CircularSlider: UIView {
         return -CGFloat(M_PI_2) + radiansOffset
     }
     fileprivate var endAngle: CGFloat {
-        return 3 * CGFloat(M_PI_2) - radiansOffset
+        return startAngle + visibleArcAngle
     }
     fileprivate var angleRange: CGFloat {
         return endAngle - startAngle
@@ -92,6 +92,12 @@ open class CircularSlider: UIView {
     }
     @IBInspectable
     open var radiansOffset: CGFloat = 0 {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
+    @IBInspectable
+    open var visibleArcAngle: CGFloat = CGFloat(2*M_PI) {
         didSet {
             setNeedsDisplay()
         }
